@@ -113,3 +113,8 @@ h3 {
 form i {
   color: var(--primary);
 }
+
+.form-signin {
+  max-width: 430px;
+  padding: 1rem;
+}

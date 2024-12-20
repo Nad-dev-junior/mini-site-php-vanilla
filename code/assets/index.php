@@ -1,8 +1,8 @@
 <?php
 require_once '../templates/header.php';
-require_once './libs/listing.php';
+require_once './lib/listing.php';
 
-$listings = getlistings();
+$listings = getListings();
 
 
 
@@ -28,7 +28,7 @@ $categories = [
 <div class="row ">
     <h2 class="pb-2 border-bottom">Les dernières annonces</h2>
     <?php
-    foreach ($listings as $listing) {
+    foreach ($listings as $key => $listing) {
         require "../templates/listing_part.php";
     }
 
@@ -39,7 +39,7 @@ $categories = [
 <div class="container py-5" id="hanging-icons">
     <h2 class="pb-2 border-bottom ">Les categories</h2>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-        <?php foreach ($categories as $category) {
+        <?php foreach ($categories as $key => $category) {
             require "../templates/categorie-part.php";
         } ?>
     </div>

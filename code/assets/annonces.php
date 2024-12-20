@@ -1,8 +1,8 @@
 <?php
 require_once "../templates/header.php";
-require_once './libs/listing.php';
+require_once './lib/listing.php';
 
-$listings = getlistings();
+$listings = getListings();
 ?>
 
 <div class="row">
@@ -10,8 +10,22 @@ $listings = getlistings();
     <div class="col-md-3">
         <form action="" method="get">
             <h2>Filtres</h2>
-            <div>
-                <input type="text" name="search" id="search" class="form-control" placeholder="Rechercher">
+            <div class="p-3 border-bottom">
+                <input name="search" type="text"  id="search" class="form-control" placeholder="Rechercher">
+            </div>
+            <div class="p-3 border-bottom">
+                <label for="price">Prix</label>
+                <div class="input-group">
+                    <input name="min-price"type="number"  id="min-price" class="form-control" placeholder="prix-minimum">
+                    <span class="input-group-text">€</span>
+                </div>
+                <div class="input-group">
+                    <input name="max-price"  type="number" id="max-price" class="form-control" placeholder="prix-maximum">
+                    <span class="input-group-text">€</span>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary  w-100">Filtrer</button>
             </div>
         </form>
     </div>
@@ -19,8 +33,8 @@ $listings = getlistings();
     <div class="col-md-9">
         <div class="row">
             <?php
-            foreach ($listings as $listing) {
-                require "../templates/listing_part.php";
+            foreach ($listings as $key => $listing) {
+                require '../templates/listing_part.php';
             }
 
             ?>
