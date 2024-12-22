@@ -1,16 +1,12 @@
 <?php
 require_once '../templates/header.php';
 require_once './lib/listing.php';
+require_once './lib/category.php';
 
 $listings = getListings();
 
+$categories =getcategory();
 
-
-$categories = [
-    ["names" => "jeux vidéo", "icon" => "controller"],
-    ["name" => "vetements", "icon" => "tag"],
-    ["name" => "meubles", "icon" => "lamp"],
-]
 ?>
 <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
     <div class="col-10 col-sm-8 col-lg-6">
