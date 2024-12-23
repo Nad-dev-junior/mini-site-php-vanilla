@@ -1,0 +1,23 @@
+<!-- l'instruction suivante n'est pas recommander car le code peut etre pirater par une autre personne par des injection sql -->
+
+<!-- PDO => php data object -->
+ <?php
+// $pdo = new PDO('mysql:dbname=studi_okazz; port=3307;host=localhost;charset=utf8mb4', 'root', '');
+//$id = $_GET['id'];
+//$query = $pdo->query("SELECT * FROM users WHERE id = $id");
+//$result = $query->fetch(PDO::FETCH_ASSOC);
+
+//var_dump($result);
+
+//  Requette securisée
+$pdo = new PDO('mysql:dbname=studi_okazz; port=3307;host=localhost;charset=utf8mb4', 'root', '');
+$id = (int)$_GET['id'];
+$query = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+$query->bindValue(':id', $id, PDO::PARAM_INT);
+$query->execute();
+//fetch() nous permet de récupérer une seule ligne
+$result = $query->fetch(PDO::FETCH_ASSOC);
+//$result est un tableau association qu’on peut manipuler comme on l’a vu précédemment
+
+var_dump($result);
+?> 
