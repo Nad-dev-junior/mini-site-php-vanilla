@@ -1,12 +1,13 @@
 <?php
 require_once "../templates/header.php";
-require_once './lib/listing.php';
+require_once "./lib/listing.php";
+require_once "./lib/pdo.php";
 
-$listings = getListings();
+$listings = getListings($pdo);
 ?>
 
 <div class="row">
-    <h1 pb-2 border-bottom>Les annonces</h1>
+    <h1 class="pb-2 border-bottom" >Les annonces</h1>
     <div class="col-md-3">
         <form action="" method="get">
             <h2>Filtres</h2>
@@ -16,7 +17,7 @@ $listings = getListings();
             <div class="p-3 border-bottom">
                 <label for="price">Prix</label>
                 <div class="input-group">
-                    <input name="min-price"type="number"  id="min-price" class="form-control" placeholder="prix-minimum">
+                    <input name="min-price" type="number"  id="min-price" class="form-control" placeholder="prix-minimum">
                     <span class="input-group-text">€</span>
                 </div>
                 <div class="input-group">
@@ -34,7 +35,7 @@ $listings = getListings();
         <div class="row">
             <?php
             foreach ($listings as $key => $listing) {
-                require '../templates/listing_part.php';
+                require "../templates/listing_part.php";
             }
 
             ?>

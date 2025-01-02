@@ -1,3 +1,7 @@
+<?php
+// pour avoir la session sur toute les pages ; il faut faire un session() dans le header 
+ session_start()  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- style--cdn-css-bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-     <!-- style-css-bootstrap-pour les couleur -->
+    <!-- style-css-bootstrap-pour les couleur -->
     <link rel="stylesheet" href="./css/override-bootstrap.css">
-     <!-- style--cdn-icon-bootstrap -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- style--cdn-icon-bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Okazz Blog</title>
 </head>
 
@@ -29,8 +33,14 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                <a type="button" class="btn btn-outline-primary me-2" href="login.php">connexion</a>
-                <a type="button" class="btn btn-primary" href="inscription.php">inscription</a>
+                <!-- pour montrer que l'utisateur est bien connecté et qu'il peut se deconnecter -->
+                <?php if (isset($_SESSION["users"])): ?>
+                    <span>Bonjour <?= $_SESSION["users"]["username"] ?></span>
+                    <a type="button" class="btn btn-primary" href="logout.php">Déconnexion</a>
+                <?php else: ?>
+                    <a type="button" class="btn btn-outline-primary me-2" href="login.php">connexion</a>
+                    <a type="button" class="btn btn-primary" href="inscription.php">inscription</a>
+                <?php endif; ?>
             </div>
         </header>
         <!-- le contenu de la page -->
