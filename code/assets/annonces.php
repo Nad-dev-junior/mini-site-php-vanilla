@@ -2,9 +2,28 @@
 require_once "../templates/header.php";
 require_once "./lib/listing.php";
 require_once "./lib/pdo.php";
+require_once "./lib/category.php";
 
-$listings = getListings($pdo);
+
+// A revoir;
+$filters = [];
+if (isset($_GET["search"]) && $_GET["search"] !== "") {
+    $filters["search"] = $_GET["search"];
+}
+if (isset($_GET["min_price"]) && $_GET["min_price"] !== "") {
+    $filters["min_price"] = $_GET["min_price"];
+}
+if (isset($_GET["max_price"]) && $_GET["max_price"] !== "") {
+    $filters["max_price"] = $_GET["max_price"];
+}
+if (isset($_GET["category"])) {
+    $filters["category"] = $_GET["category"];
+}
+
+$listings = getListings($pdo, $filters);
+$categories = getCategories($pdo);
 ?>
+
 
 <div class="row">
     <h1 class="pb-2 border-bottom" >Les annonces</h1>
@@ -24,6 +43,18 @@ $listings = getListings($pdo);
                     <input name="max-price"  type="number" id="max-price" class="form-control" placeholder="prix-maximum">
                     <span class="input-group-text">€</span>
                 </div>
+            </div>
+            <!-- à revoir -->
+            <div class="p-3 border-bottom">
+                <label for="category">Catégorie</label>
+                <select name="category" id="category" class="form-select">
+                    <option disabled value> -- catégorie -- </option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?= $category["id"] ?>" <?php if ($category["id"] == $_GET["category"]) {
+                                                                    echo 'selected="selected"';
+                                                                } ?>><?= $category["name"] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary  w-100">Filtrer</button>

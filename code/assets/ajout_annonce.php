@@ -1,8 +1,9 @@
 <?php
 require_once "../templates/header.php";
 require_once "./lib/category.php";
+require_once"./lib/pdo.php";
 
-$categories = getcategory();
+$categories = getCategories($pdo);
 ?>
 <div class="form-listing w-100 m-auto">
 

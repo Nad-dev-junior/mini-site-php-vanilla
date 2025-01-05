@@ -6,7 +6,7 @@ require_once './lib/category.php';
 
 $listings = getListings($pdo);
 
-$categories =getcategory();
+$categories =getCategories($pdo);
 
 ?>
 <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
